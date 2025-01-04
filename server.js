@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
 
 // Test route
 app.get("/", (req, res) => {
-  res.send("Server is running properly");
+  res.status(200).send("Server is running properly");
 });
 
 // Start the server
