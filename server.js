@@ -8,7 +8,10 @@ const server = http.createServer(app);
 
 // Configure CORS
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://your-frontend-domain.com"], // Add allowed origins here
+  origin: [
+    "http://localhost:5173", // Your local frontend domain
+    "https://your-frontend-domain.com", // Your production frontend domain
+  ],
   credentials: true, // Allow cookies and authentication
 };
 
@@ -39,7 +42,7 @@ io.on("connection", (socket) => {
 
 // Test route
 app.get("/", (req, res) => {
-  res.send("Server running properly");
+  res.send("Server is running properly");
 });
 
 // Start the server
