@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 // Configure CORS
 const corsOptions = {
-  origin: "http://localhost:5173", // Frontend URL
+  origin: ["http://localhost:5173", "https://your-frontend-domain.com"], // Add allowed origins here
   credentials: true, // Allow cookies and authentication
 };
 
@@ -26,6 +26,7 @@ io.on("connection", (socket) => {
 
   // Listen for incoming messages from clients
   socket.on("message", (message) => {
+    console.log("Received message:", message);
     // Broadcast the message to all connected clients
     io.emit("message", message);
   });
@@ -42,6 +43,7 @@ app.get("/", (req, res) => {
 });
 
 // Start the server
-server.listen(5000, () => {
-  console.log("Server is running on port 5000");
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
